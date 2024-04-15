@@ -91,3 +91,4 @@ namespace AudioChannel
 }
 
 std::unique_ptr<SDLAudioSource> CreateAudioSource(uint64_t dataLength);
+void DemoAudioMixer();

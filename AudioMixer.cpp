@@ -125,7 +125,21 @@ std::unique_ptr<SDLAudioSource> CreateAudioSource(uint64_t dataLength)
     return std::make_unique<FlacAudioSource>(dataLength);
 }
 
+void DemoAudioMixer()
+{
+    std::unique_ptr<AudioMixer> _audioMixer;
+    _audioMixer = std::make_unique<AudioMixer>();
+    _audioMixer->Play();
+    _audioMixer->GetNextAudioChunk();
+    _audioMixer->DumpChannelUserCount();
 
+    for (int i = 1; i < 5; i++)
+    {
+        auto source = CreateAudioSource(1024 * i);
+        _audioMixer->AddSource(std::move(source));
+    }
+    _audioMixer->Dump();
+}
 
 
 
